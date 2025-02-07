@@ -34,13 +34,13 @@ type ServerInfo struct {
 	ID uint16 `json:"AppID"`
 
 	// Number of players on the server.
-	Players uint8 `json:"Players"`
+	Players uint16 `json:"Players"`
 
 	// Maximum number of players the server reports it can hold.
-	MaxPlayers uint8 `json:"MaxPlayers"`
+	MaxPlayers uint16 `json:"MaxPlayers"`
 
 	// Number of bots on the server.
-	Bots uint8 `json:"Bots"`
+	Bots uint16 `json:"Bots"`
 
 	// Indicates the type of server
 	// Rag Doll Kung Fu servers always return 0 for "Server type."
@@ -157,9 +157,9 @@ func (c *Client) QueryInfo() (*ServerInfo, error) {
 
 	info.ID = reader.ReadUint16()
 
-	info.Players = reader.ReadUint8()
-	info.MaxPlayers = reader.ReadUint8()
-	info.Bots = reader.ReadUint8()
+	info.Players = reader.ReadUint16()
+	info.MaxPlayers = reader.ReadUint16()
+	info.Bots = reader.ReadUint16()
 
 	// Rag Doll Kung Fu servers always return 0 for "Server type."
 	info.ServerType = ParseServerType(reader.ReadUint8())
