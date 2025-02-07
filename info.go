@@ -157,9 +157,9 @@ func (c *Client) QueryInfo() (*ServerInfo, error) {
 
 	info.ID = reader.ReadUint16()
 
-	info.Players = reader.ReadUint16()
-	info.MaxPlayers = reader.ReadUint16()
-	info.Bots = reader.ReadUint16()
+	info.Players    = uint16(reader.ReadUint8())
+	info.MaxPlayers = uint16(reader.ReadUint8())
+	info.Bots       = uint16(reader.ReadUint8())
 
 	// Rag Doll Kung Fu servers always return 0 for "Server type."
 	info.ServerType = ParseServerType(reader.ReadUint8())
